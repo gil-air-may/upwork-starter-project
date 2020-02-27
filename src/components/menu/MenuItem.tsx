@@ -16,10 +16,22 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
         <UserIcon src={item.userIcon} />
       </IconContainer>
       <NameContainer>{item.name}</NameContainer>
-      <div>{item.job}</div>
+      <JobContainer>{item.job}</JobContainer>
     </ItemContainer>
   )
 }
+
+const ItemContainer = styled.div`
+  padding-left: 21px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${Colors.BG2};
+  }
+`
 
 const IconContainer = styled.div`
   position: relative;
@@ -27,6 +39,7 @@ const IconContainer = styled.div`
   width: 39px;
   height: 24px;
   align-items: center;
+  margin-right: 11px;
 `
 
 const CompanyIcon = styled.img`
@@ -57,11 +70,12 @@ const UserIcon = styled.img`
   right: 8.33%;
 `
 
-const ItemContainer = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 40px;
+const NameContainer = styled.div`
+  font-size: 14px;
+  margin-right: 8px;
 `
 
-const NameContainer = styled.div``
+const JobContainer = styled.div`
+  font-size: 12px;
+  color: ${Colors.TX3};
+`
