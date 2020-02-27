@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import { User } from './Types'
 import styled from 'styled-components'
 import { Colors } from '../../lib/style-guide'
@@ -6,11 +6,17 @@ import { Colors } from '../../lib/style-guide'
 interface MenuItemProps {
   item: User
   key: number
+  position: 'first' | 'last' | 'single' | undefined
 }
 
-export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
+interface Position {
+  position: 'first' | 'last' | 'single' | undefined
+}
+
+export const MenuItem: React.FC<MenuItemProps> = ({ item, position }) => {
+  console.log(position)
   return (
-    <ItemContainer>
+    <ItemContainer position={position}>
       <IconContainer>
         <CompanyIcon src={item.orgIcon} />
         <UserIcon src={item.userIcon} />
@@ -21,12 +27,18 @@ export const MenuItem: React.FC<MenuItemProps> = ({ item }) => {
   )
 }
 
-const ItemContainer = styled.div`
+const ItemContainer = styled.div<Position>`
   padding-left: 21px;
   display: flex;
   align-items: center;
   width: 100%;
   height: 40px;
+
+  margin-top: ${(props) =>
+    props.position === 'first' || props.position === 'single' ? '10px' : '0px'};
+  margin-bottom: ${(props) =>
+    props.position === 'last' || props.position === 'single' ? '10px' : '0px'};
+
   cursor: pointer;
   &:hover {
     background-color: ${Colors.BG2};

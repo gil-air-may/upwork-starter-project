@@ -10,29 +10,32 @@ interface MenuProps {
 }
 
 export const Menu: React.FC<MenuProps> = ({ containerStyle, items }) => {
-  const itemsArray = items.map((item) => {
-    return <MenuItem item={item} key={item.id} />
+  const itemsArray = items.map((item, index, arr) => {
+    if (arr.length === 1) {
+      console.log('over here')
+      return <MenuItem item={item} position="single" key={item.id} />
+    }
+    if (index === 0) {
+      return <MenuItem item={item} position="first" key={item.id} />
+    }
+
+    if (index === arr.length - 1) {
+      return <MenuItem item={item} position="last" key={item.id} />
+    }
+    return <MenuItem item={item} position={undefined} key={item.id} />
   })
 
   return (
     <MenuContainer style={containerStyle}>
       <NameFilter />
-      <PaddedContainer>{itemsArray}</PaddedContainer>
+      {itemsArray}
     </MenuContainer>
   )
 }
 
-const PaddedContainer = styled.div`
-  padding-top: 10px;
-  padding-bottom: 10px;
-`
-
 const MenuContainer = styled.div`
   align-self: center;
-
-  height: 230px;
   width: 270px;
-
   margin: 0 auto;
   background: #ffffff;
   border: 1px solid #d1e3f8;
