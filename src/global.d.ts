@@ -1,5 +1,7 @@
 declare const module: { hot: { accept: () => void } }
 
+declare module '*.png'
+
 interface IconProps {
   color?: string
   className?: string
