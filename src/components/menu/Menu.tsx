@@ -1,6 +1,7 @@
 import React, { CSSProperties } from 'react'
 import styled from 'styled-components'
 import { MenuItem } from './MenuItem'
+import { NameFilter } from './NameFilter'
 import { User } from './Types'
 
 interface MenuProps {
@@ -13,8 +14,18 @@ export const Menu: React.FC<MenuProps> = ({ containerStyle, items }) => {
     return <MenuItem item={item} key={item.id} />
   })
 
-  return <MenuContainer style={containerStyle}>{itemsArray}</MenuContainer>
+  return (
+    <MenuContainer style={containerStyle}>
+      <NameFilter />
+      <PaddedContainer>{itemsArray}</PaddedContainer>
+    </MenuContainer>
+  )
 }
+
+const PaddedContainer = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
+`
 
 const MenuContainer = styled.div`
   align-self: center;
