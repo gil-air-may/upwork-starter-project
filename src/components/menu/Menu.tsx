@@ -12,7 +12,6 @@ interface MenuProps {
 export const Menu: React.FC<MenuProps> = ({ containerStyle, items }) => {
   const itemsArray = items.map((item, index, arr) => {
     if (arr.length === 1) {
-      console.log('over here')
       return <MenuItem item={item} position="single" key={item.id} />
     }
     if (index === 0) {
